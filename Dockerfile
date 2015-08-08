@@ -1,9 +1,9 @@
-FROM stackbrew/ubuntu:trusty
+FROM ubuntu:trusty
 
 RUN apt-get update && apt-get install -y curl logrotate
 
 # Get latest from https://mms.mongodb.com/settings/monitoring-agent
-RUN curl -sSL https://mms.mongodb.com/download/agent/monitoring/mongodb-mms-monitoring-agent_3.4.0.190-1_amd64.deb -o mms.deb
+RUN curl -sSL https://cloud.mongodb.com/download/agent/monitoring/mongodb-mms-monitoring-agent_3.6.0.201-1_amd64.deb -o mms.deb
 RUN dpkg -i mms.deb
 RUN rm mms.deb
 
