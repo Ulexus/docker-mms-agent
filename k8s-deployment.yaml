@@ -1,0 +1,30 @@
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mms-agent
+  namespace: db
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mms-agent
+    spec:
+      containers:
+      - name: agent
+        image: ulexus/mms-agent:6.0.0
+        imagePullPolicy: Always
+        env:
+        - name: MMS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mms
+              key: apikey
+        - name: MMS_GROUP_ID
+          valueFrom:
+            secretKeyRef:
+              name: mms
+              key: groupid
+
